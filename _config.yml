@@ -1,4 +1,8 @@
-header_pages:
-  - index.md
-  - about.md
-  - docs.md
+title: My Project Progress Blog
+description: Tracking my daily and weekly development.
+
+# Switch to the documentation layout theme
+remote_theme: just-the-docs/just-the-docs
+
+# Enable the built-in search bar in the sidebar
+search_enabled: true
