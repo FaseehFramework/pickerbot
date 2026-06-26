@@ -1,9 +1,9 @@
 ---
 layout: default
 title: June 2026
-nav_order: 1
 has_children: true
+nav_order: 1
 ---
 
-# June 2026 Entries
-Select an entry from the sidebar on the left to see what I worked on this month!
+# June 2026 Progress
+Select a log entry from the sidebar dropdown.
