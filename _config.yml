@@ -9,4 +9,4 @@ search_enabled: true
 
 exclude:
   - "initial brainstorming/"
-  - readme.md
+  - README.md
