@@ -82,4 +82,4 @@ Writing these down honestly, a few worries are already obvious:
 
 I've got my supervisor meeting with **Dr. Sameer** coming up. My plan is to bring these four features to that meeting and test the framing *is this the right problem, and is it framed in a way that "feels right"?* — before I commit to a formal proposal.
 
-→ *Continued in the [next entry]({% link june-week2.md %}): the initial meeting with Dr. Sameer.*
+→ *Continued in the [next entry]({% link june-2.md %}): the initial meeting with Dr. Sameer.*
