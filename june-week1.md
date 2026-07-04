@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "20/06/2026 : Initial Brainstorming"
+title: "20/06/2026 : Brainstorming"
 parent: June 2026
 nav_order: 1
 ---
@@ -20,8 +20,8 @@ It genuinely works on the bench. But every assumption downstream of the detector
 That question produced four ideas.
 
 <video controls muted playsinline width="100%" style="max-width:640px;">
-  <source src="img/pickerbot-legacy.mp4" type="video/mp4">
-  Your browser does not support the video tag — <a href="img/pickerbot-legacy.mp4">download the clip</a> instead.
+  <source src="img/pickerbotpreview.mp4" type="video/mp4">
+  Your browser does not support the video tag — <a href="img/pickerbotpreview.mp4">download the clip</a> instead.
 </video>
 
 *The legacy Picker-Bot, end to end: the camera detects the Arduino with YOLO, sends a pick command to the EPSON arm, and the manipulator picks it up and drops it in the goal zone. This is the "before" state I'm building on.*

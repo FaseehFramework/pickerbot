@@ -21,8 +21,9 @@ I read these looking for one thing: *how does each one choose what to pick next,
 
 **ClutterNav (2025), "Gradient-Guided Search for Efficient 3D Clutter Removal with Learned Costmaps."** This one is telling. They explicitly argue that **rule-based heuristics are too rigid and computationally heavy**, and that end-to-end reinforcement learning is uninterpretable so they train a **"removability critic"** from demonstrations that scores the cost of removing each object, plus integrated gradients that estimate how each neighbour affects the target's accessibility. The result is described as "near human-like strategic sequencing without predefined heuristics." Impressive but it needs demonstrations and training, and the *signal it learns* is accessibility/occlusion.
 
-![ClutterNav's learned pipeline: a value function trained offline in simulation produces removability scores, feeding a removability cost estimator with gradient saliency to decide which object to remove next.](img/june3/clutternav%20fig2.png)
+![ClutterNav's learned pipeline: a value function trained offline in simulation produces removability scores, feeding a removability cost estimator with gradient saliency to decide which object to remove next.](img/june3/clutternavfig2.png)
 
+*The kind of "expensive machinery" I'm contrasting against — ClutterNav's learned removability pipeline (after Ravie et al., 2025): an offline-trained value function plus gradient saliency, just to decide what to remove next.*
 
 **Zeng et al. (2018), "Robotic Pick-and-Place of Novel Objects in Clutter" (MIT–Princeton, 1st place, Amazon Robotics Challenge 2017).** A category-agnostic **affordance** predictor picks among four grasp primitives and effectively grasps whatever is *most graspable* next, with cross-domain image matching to recognise novel objects. A landmark clutter system but the ordering is implicit inside a large learned affordance model plus multi-primitive hardware.
 
