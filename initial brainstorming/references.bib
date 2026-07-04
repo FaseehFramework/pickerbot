@@ -1,0 +1,68 @@
+% ============================================================================
+% PDE4445 — Picker-Bot dissertation: reference library
+% ----------------------------------------------------------------------------
+% Running BibTeX file. Add one @entry per paper as you read it — don't leave
+% citations to the end (per the action plan).
+%
+% Conventions:
+%   * Citation key: firstauthorYYYYkeyword  (e.g. nam2020fast)
+%   * keywords = the §3 cluster the paper belongs to, so entries stay sortable:
+%       sequencing | pose-grasp | verification | entanglement | sim2real |
+%       middleware | sensor | specular
+%   * file = path to the local PDF, relative to this .bib (for Zotero/JabRef)
+%   * Items marked "VERIFY" need a field confirmed before the report submission.
+% ============================================================================
+
+
+% ---------------------------------------------------------------------------
+% §3.2  Pick sequencing / clutter removal  (home of the sequencing hypothesis)
+% ---------------------------------------------------------------------------
+
+@inproceedings{nam2020fast,
+  title        = {Fast and Resilient Manipulation Planning for Target Retrieval in Clutter},
+  author       = {Nam, Changjoo and Lee, Jinhwi and Cheong, Sang Hun and Cho, Brian Y. and Kim, ChangHwan},
+  booktitle    = {2020 IEEE International Conference on Robotics and Automation (ICRA)},
+  year         = {2020},
+  eprint       = {2003.11420},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.RO},
+  keywords     = {sequencing},
+  note         = {TAMP that minimises the number of pick-and-place actions to retrieve a target from dense clutter; handles occlusion-induced uncertainty. VERIFY: pages/DOI},
+  file         = {papers/Fast and resilient manipulation planning for target retrieval in clutter.pdf}
+}
+
+@misc{ravie2025clutternav,
+  title        = {ClutterNav: Gradient-Guided Search for Efficient 3D Clutter Removal with Learned Costmaps},
+  author       = {Ravie, Navin Sriram and Vasan M, Keerthi and Sebastian, Bijo},
+  year         = {2025},
+  eprint       = {2511.12479},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.RO},
+  howpublished = {arXiv preprint arXiv:2511.12479},
+  keywords     = {sequencing},
+  note         = {Learned removability critic + integrated gradients pick the next-best object to remove while minimising stack disturbance; RL, occlusion-aware. IIT Madras.},
+  file         = {papers/ClutterNav Gradient Guided Search for Efficient.pdf}
+}
+
+@inproceedings{zeng2018robotic,
+  title        = {Robotic Pick-and-Place of Novel Objects in Clutter with Multi-Affordance Grasping and Cross-Domain Image Matching},
+  author       = {Zeng, Andy and Song, Shuran and Yu, Kuan-Ting and Donlon, Elliott and Hogan, Francois R. and Bauza, Maria and Ma, Daolin and Taylor, Orion and Liu, Melody and Romo, Eudald and Fazeli, Nima and Alet, Ferran and Dafle, Nikhil Chavan and Holladay, Rachel and Morona, Isabella and Nair, Prem Qu and Green, Druck and Taylor, Ian and Liu, Weber and Funkhouser, Thomas and Rodriguez, Alberto},
+  booktitle    = {2018 IEEE International Conference on Robotics and Automation (ICRA)},
+  year         = {2018},
+  eprint       = {1710.01330},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.RO},
+  keywords     = {sequencing, pose-grasp},
+  note         = {MIT-Princeton, 1st place stowing at Amazon Robotics Challenge 2017. Category-agnostic affordance prediction + cross-domain image matching; picks novel objects in heavy clutter without task-specific data. VERIFY: pages/DOI},
+  file         = {papers/Robotic Pick-and-Place of Novel Objects in Clutter.pdf}
+}
+
+@misc{yu2025reliable,
+  title        = {Towards Reliable Sequential Object Picking in Clutter: The Runner-up Solution to RGMC 2025},
+  author       = {Yu, Wei and Zhang, Xidan and Zheng, Ziyi and Kong, Weijie and Dong, Huixu},
+  year         = {2025},
+  howpublished = {Runner-up (2nd place), Pick-in-Clutter track, 10th Robotic Grasping and Manipulation Competition (RGMC), ICRA 2025},
+  keywords     = {sequencing, pose-grasp},
+  note         = {Integrated recognition + decluttering (rearrangement policy) + multi-modal grasping (Fin-ray/electromagnet/suction) on a UR5e with a wrist-mounted Orbbec Femto Bolt. Zhejiang University. VERIFY: arXiv ID / URL},
+  file         = {papers/Towards Reliable Sequential Object Picking in Clutter.pdf}
+}
