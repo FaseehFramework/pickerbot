@@ -1,0 +1,139 @@
+ Abstract:
+In this research, we tackle the challenge of picking only one object from a randomly stacked pile where the objects can potentially be tangled. No solution has been proposed to solve this challenge due to the complexity of picking one and only one object from the bin of tangled objects. Therefore, we propose a method for avoiding the situation where a robot picks multiple objects. In our proposed method, first, grasping pose candidates are computed by using the graspability index. Then, a Convolutional Neural Network (CNN) is trained to predict whether or not the robot can pick one and only one object from the bin. Additionally, since a physics simulator is used to collect data to train the CNN, an automatic picking system can be built. The effectiveness of the proposed method is confirmed through experiments on robot Nextage and compare with previous bin-picking methods.
+
+ SECTION I.
+Introduction
+
+Bin picking is a common task in the manufacturing processes, where, typically a human worker is in charge of unloading one part from the bin at a time to feed a machine. Automation of bin picking using industrial robots is then crucial, on the one hand, to relieve workers hands from this tedious, monotonous and potentially dangerous task or, on the other hand, to remove the necessity of implementing any parts-feeding machines to arrange the objects to be picked by a robot. However, robotic bin picking presents a tough challenge that involve looking, selecting and picking randomly oriented objects. The topic of solving the bin picking task with a robot has been extensively researched such as in [1]–​[8], nevertheless, it remains as a difficult and complex challenge. One of the difficulties of the task is due to the complex physical phenomena of the contact between the objects and the robot fingers. Hence, the success rate of a picking task is usually between 80 and 90 [%] even for simple-shaped objects [5], [9], [10].
+
+Let us consider the picking task from a bin full of randomly mixed and staked parts. There are two particular cases where the contact dynamics between the robot fingers and the objects makes robotic bin-picking difficult.
+
+First, while a multi-fingered gripper approaches the target object within the pile, one of the fingers may contact a surrounding object. In this case, if the surrounding object does not move after making contact with a finger, it is impossible for the gripper to grasp the target object. In the second case, depending on the object’s shape, randomly stacked objects may be entangled with another object as shown in Fig. 1. In this case, a careful selection of the object is required to guarantee that only one is picked. If a robot picks an object entangled with other objects, the robot’s gripper may unexpectedly pick more than one object at the same time. In the worst scenario, the overall picking task will fail because the target object is tangled with other parts in such a way that lifting it becomes impossible. Especially, the second case has not been considered in conventional researches on robotic bin-picking.
+
+Fig. 1.
+
+Robotic bin-picking. The robot picked the target object but mistakenly picked up more objects, since they are tangled
+
+To cope with the above two problems at the same time, we propose a new learning based approach for robotic bin-picking. To pick a complex shaped object from the pile, the robot has to carefully select and pick an object such that the picked object is not entangled with another object. In our proposed method, we first generate candidates of gripper’s grasping poses by using the graspability index [5] where we can avoid a finger of a gripper contacting a surrounding object while the gripper approaches to the target object. The graspability generates a 2D map of the pile indicating that fingers of a gripper can be inserted in between the objects without making collision. However, just by using the graspability index, we cannot avoid a picked object being entangled with another object. Hence, we introduce the learning based approach by using a Convolutional Neural Network (CNN). While conventional learning based methods on robotic bin-picking just predict whether or not a robot successfully pick an object from the pile, we propose a novel approach where a CNN predicts whether or not a picked object is entangled with another object. We show that a robot can pick a complex shaped object from the pile with higher success rate compared to the conventional CNN based robotic bin-picking methods. Since collecting enough number of training data used for CNN through the real world experiment is not easy especially for detecting if a picked object is entangled with another object, we use a physics simulation of picking an object from randomly stacked pile. We show that, even if we collect the training data through physics simulation, the success rate of a picking task by using our proposed method is high enough as we will discuss in the section of experiment.
+
+Fig. 2.
+
+Overview of the graspability calculation
+
+The rest of this paper is organized as follows. After discussing the related works in Section II, we will discuss our proposed method in Section III. In Section IV, we will show several experimental results to confirm the validity of the proposed approach
+
+ SECTION II.
+Related Work
+
+So far, research on robotic bin-picking has been mainly done on image segmentation [1], pose identification [2]–​[4], and picking methods [5], [6], [8], [9], [11–​14]. Among them, the research on bin-picking method can be further categorized into three categories, i.e., the picking methods based on the pose identification of piled objects [4], [6], [8], the methods without using the pose identification [5], and the learning-based methods [9]–​[14]. As for the methods based on the pose identification of piled objects [4], [6], [8], we need to carefully set several parameters used in both visual recognition and grasp planning corresponding for each picked object. When a robot has to pick several different objects, it is not easy for setting parameters for all objects to be picked. On the other hand, as for the method without using the pose identification, Domae et al. [5] proposed a method for determining the grasping pose of an object directly from the depth image of the pile based on the graspability index. However, it is impossible by using this method to avoid a robot picking an object entangled with another object.
+
+As for the learning based methods, Levine et al. [11] proposed an end-to-end approach by using deep neural network while this method requires extremely large number of training data obtained from real world experiments. Recently, there are some trials on reducing the effort to collect a number of training data by using a method so called GraspGAN [14], cloud database [12], [15]–​[17] and physics simulation [10]. However, the conventional learning based approach on robotic bin-picking just predicts whether or not a robot can successfully pick an object from the pile and have not explicitly considered the case where a picked object is entangled with another object. Hence, if a robot picks a complex shaped object, a picked object may be entangled with another object. On the other hand, our proposed CNN is used to just predict whether a picked object is entangled with another object. The learning approach has also been used for grasping a novel daily object placed isolated on a table [18]–​[21] and for warehouse automation [22], [23]. Pas et al. [20] developed a method for learning an antipodal grasp of a novel object by using the SVM (Support Vector Machine). Lenz et al. [19] used deep learning to detect the appropriate grasping pose of an object. Zeng et al. [22] proposed a learning based picking method used for warehouse automation.
+
+As for the manipulation of potentially-tangled object, some researchers such as [24], [25] researched the robotic manipulation of a rope. On the other hand, this research is the first trial on picking an object from the tangled pile.
+
+ SECTION III.
+Proposed Method
+
+This section explains our proposed method for picking only one object from the bin with potentially tangled objects. We assume a parallel jaw gripper to pick an object from the pile. In our proposed method, some candidates grasping poses are first detected using the graspability index [5]. These candidates are guaranteed to avoid collision of the robot’s finger with the nearby objects while the hand approaches the target object. Next, we explain the physics simulation used to train our proposed CNN. Our CNN is used to predict whether or not the robot can pick only one object from the bin with potentially tangled objects. Finally, the grasping pose is selected based on the harmonic mean of the graspability index and the CNN prediction. The grasping pose detected in these procedures ensure that a robot can pick only one object from the tangled pile with a high success probability. This section details the approach followed in this work.
+A. Graspability Index
+
+The graspability [5] is calculated by using two mask images, one describing a contact region that should be filled by a target object for stable grasping, and the other describing a collision region that should not be filled by other objects to avoid collisions during grasping. To calculate the graspability, two fingers of a gripper are represented by the cross section in the 2D horizontal plane. The graspability is computed by convolving the mask images with binarized depth maps, which are thresholded differently in each region according to the minimum height of the 3D points in the region and the length of the gripper. After computing the region of contact without collision of the gripper and object, the graspability map for the gripper model is then obtained by adding a blur with a Gaussian filter. As a result, the portion of the map with higher pixel value is regarded as more stable. These processes are as shown in Fig. 2. The grasping poses obtained are guaranteed that there is no collision between the hand and the obstacles, and that target object exists in the trajectory of closing the gripper. For our method, the top five grasping poses detected with the graspability index method were used as grasp candidates.
+B. Physics Simulator
+
+Our proposed method is based on supervised learning, so in order to predict whether or not the robot can pick only one object from a bin with randomly placed and possibly entangled objects, labeled training data is necessary. More specifically, the goal of our CNN is to predict whether or not an attempt to pick an object will result in one and only one object being picked. We collect training data using a physics simulator. The basic idea for collecting training data is, within the simulation, the robot attempts to pick an object from a randomly generated pile of objects, then the number of objects picked is recorded. Therefore, we needed to build a simulator that could tell the number of objects picked at the end of each picking attempt. However, first, we have to define how to judge the number of objects picked in a single picking motion in the simulator, more than one object picked would mean that the target object was entangled with nearby objects. To define the entanglement in the simulator, we follow the reasoning described below. First, if the entanglement is defined as just the number of objects that a parallel jaw gripper successfully picked up, then the tangled objects that may drop during the motion are not taken into account. So, instead of considering only the number of objects picked in by the end of a single picking motion, we defined the entanglement as whether or not the objects near the target object moved upward during the picking motion. A threshold determines where the part was lifted or not. However, when several objects were strongly tangled with each other, they were not lifted upwards at all due to the combined weight. So, in this case, the entanglement could not be detected. So finally, we changed the specification of the simulator to automatically lift the object existing at the grasping position, without trying to simulate the grasping with the robot gripper.
+
+Fig. 3.
+
+Dataset collection with physics simulation
+
+Based on the above, the specification of the simulator is as follow. First, our simulator generates a bin with a pile of randomly placed objects and searches for a grasping pose based on the graspability index as shown in the top left of Fig. 3. Second, the target object, the part that is in the closing trajectory of the parallel jaw gripper, is automatically lifted. At this time, this object turns green as shown in the top right of Fig. 3. Then, if objects excluding the green one move more than a certain amount in an upward direction, they turn red as shown in the bottom of Fig. 3. Finally, our simulator records the picking as tangled if the number of picked objects during a single picking motion is more than one. Otherwise, if only one object is lifted up, it records the picking as not tangled. In addition, if several objects exist in the closing trajectory, the gripper will grasp them together. So, if there are two or more objects detected in the trajectory of gripper closing, the case is immediately recorded as tangled regardless of whether or not other nearby objects move upward. By repeating this cycle, we can collect a lot of training data labeled with tangled or not tangled during a single picking motion.
+
+Fig. 4.
+
+Architecture of the convolutional neural network used for classifying whether a candidate grasping pose will result in the target object being picked without being entangled with another object
+
+C. Convolutional Neural Network
+
+The CNN’s job is to predict whether or not the robot will be able to pick one and only one object from a pile of potentially tangled objects. The input given to the CNN is a depth image of the top view of the bin. The architecture of CNN is inspired by the AlexNet [26] network, which accomplished significant results in ILSVRC (ImageNet Large Scale Visual Recognition Challenge) [27]. Here, the input to CNN is a rotated depth image so that the orientation of the robot hand is always horizontal. The reason for this is that the learning result was better when inputting only a depth image rotated according to a hand than when using both of them separately. Our CNN is composed of a series of convolutional layers followed by pooling layers as shown in Fig. 4. A max pooling of 2x2 pixel is applied in each pooling layer. The result is then processed by three fully-connected layers that classify whether or not the robot can pick only one object for the given grasping candidate. These classes are denoted by y0(‘Not tangled’) and y1=1−y0(‘Tangled’) by using the following softmax function:
+
+
+where ak denotes the weight of the input of the last fully connected layer. An activation function is used in the convolution layers and the fully connected layers to avoid the problem of gradient loss. For this reason, we use a ReLU(Rectified Linear Unit) function as the activation function:
+
+In our proposed method, the candidates of grasping poses detected by using the graspability index were used as the input to the CNN. Finally, the grasping pose is selected based on the harmonic mean of the graspability index and the CNN prediction.
+
+ SECTION IV.
+Experiment
+A. Setup
+
+In order to evaluate the proposed method, two different experiments were conducted with the following equipment: an industrial robot Nextage from Kawada Robotics Inc., a depth sensor, a parallel jaw gripper and a bin with randomly placed objects. The setup is shown in Fig. 5.
+
+Fig. 5.
+
+Experimental setup: Depth sensor with a fixed top view of the bin, parallel jaw gripper and a bin filled with randomly placed objects.
+
+First, we consider testing our method on several items, a different CNN was trained for each item. The task of the robot was to pick one object from a pile full of that kind of objects. This approach was followed because we consider that whether or not the robot can pick only one object from the tangled pile strongly depends on the shape of each object. In this first experiment, the proposed method is compared to the picking method that only uses the graspability index [5] and our previous method using a CNN for discriminating success/failure of picking [10]. For testing, 15 items of four different types of objects were used, as shown in Fig. 6. In the physics simulator, we use the 3D models of the objects as shown in the right column of Fig. 6. The simulation was used to collect a dataset of 5,100 pairs of depth images and the number of objects lifted. The bin-picking simulation is shown in Fig. 3. The training data is sampled such that the number of cases of picking a single object is the same as the number of cases of picking more than one object. 90% of the data is used to train the CNN and the remaining 10% is used for validation of the trained CNN.
+
+The training dataset was augmented by rotating and inverting the depth images, the number of training data obtained at the end was 36,720. For each of the five kinds of objects, a dataset was collected and then a respective CNN was trained using the corresponding training data. After training, we conducted picking experiment to test the CNN for 20 times for each object. For each test, the number of objects included in a bin is 35 for the objectA, 27 for the object B, 25 for the object C and 15 for the object D.
+
+For the second experiment, the goal was to evaluate the generalization capability of our method. For this, a CNN was assessed using a pile of objects different from the ones used for training. Since our first assumption was that the shape of the object is crucial to determine whether or not the robot will successfully pick only one object from the tangled pile, we usually collect the training data for each item independently. However, to explore the generalization capabilities of the proposed method, it is necessary to train and evaluate the CNN with objects of different kinds. Thus, the CNN was trained by using all objects A, B, C and D shown in Fig. 6. Then, the trained CNN was evaluated by making the robot attempt to pick three novel types of objects as shown in Fig. 8. These novel objects are also often likely to be entangled with each other.
+
+More specifically, the goal of this experiment is to verify two things. On the one hand, for the objects E and F: the idea is to check the performance of the CNN when the shape of the object on testing time is similar to the one of objects used during training of the CNN. On the other hand, for the object G: the idea is to check the performance of the CNN when the shape of the object is quite different from the objects used to train the CNN. For these three kinds of objects, the experiment consisted of attempting the picking 20 times for each object. For each test, we set the bin with a stack of 13 to 15 objects. Furthermore, in this experiment our trained CNN is compared with the picking method that uses the graspability index [5].
+B. Result and Discussion
+
+Table I shows the result of the picking where the same object is used to train the CNN. The results are displayed as; the numerator denotes the number of times when the gripper successfully picked up one or more objects; the number between the brackets denotes the number of times when the gripper successfully picked up only one object; the denominator means the number of times that the experiment was conducted. The examples of the experimental result are shown in Figs. 7 and 9. In the case of the graspability index method, as shown in Fig. 9(b), the robot tried to pick an object that has the highest graspability index, but as can be seen in the examples, the object with highest graspability index may be tangled with nearby objects. On the other hand, in our method, as shown in Fig. 9(c), the robot tries to pick the object with the grasping pose attached with a green dot, where the harmonic mean of graspability and prediction of the CNN is the highest, meaning a low probability of being tangled. The total calculation time to detect the grasping pose by existing method [10], existing method [5] and our method are 12.6 [s], 1.4 [s] and 1.9 [s], respectively. The results show that for the objects B and D, which are more likely to present entanglement, the proposed method considerably improve the success rate of picking only one object. In contrast, for the object A, since these objects are not likely to be tangled in most of the cases, there is no significant difference in success rate between our method and previous methods. In this case, our method relies mainly on determining the grasping pose using the graspability index.
+
+Fig. 6.
+
+Types of objects used for training of the proposed CNN in both experiments. In the Left, the real object. In the right, the 3D model used in the physics simulator
+
+Fig. 7.
+
+Snapshot of a picking experiment
+
+As shown in Fig. 9(c), our CNN does not always select the red segment with the highest graspability, because our CNN predicts the grasping pose as tangled.
+
+The object C is a special case; the shape of this object makes it highly probable that all the items in the bin get entangled. For this reason, our CNN cannot find any suitable object between the grasping candidates since all five candidates are classified as tangled. In these cases, the robot cannot avoid picking the tangled object as shown in the lower middle of Fig. 9(c). In consequence, our method does not provide any significant improvement compared to previous methods.
+
+TABLE I Results of Experiment 1: the Numerator Denotes the Number of Times When the Gripper Successfully Picked Up at Least One Object. The Number Between the Brackets Denotes the Number of Times When the Gripper Successfully Picked Up Only One Object. Denominator Denotes the Number of Times That the Experiment Was Conducted.
+
+Fig. 8.
+
+Objects used to evaluate the generalization capability of the proposed CNN
+
+C. Generalization
+
+Table II shows the result of the picking where all objects A, B, C and D are used to train the CNN. The results are displayed as; the numerator denotes the number of times when the gripper successfully picked up one or more objects; the number between the brackets indicates the number of times when the gripper successfully picked up only one item; the denominator means the number of times that the experiment was conducted. The examples of the grasping poses detected by our method are shown in Fig. 10. The robot picked an object with the grasping pose shown by the red or yellow segment attached with a green dot, which marks the grasping candidate where the harmonic mean of graspability and prediction of the CNN is the highest. The shape of the three objects tested is likely to be tangled if the objects are randomly stacked. Our method achieves a high success rate for picking up only one object for the objects E and F in spite of having the shape likely to be tangled.
+
+In each case, we confirmed that the success rate of the proposed method is higher than the previous method, that determines the grasping pose only by using the graspability index. For the objects E and F especially, the success rate of the proposed method is much higher than the previous method. The reason is that the shape of the objects E and F are similar to object B which is used for training the CNN. On the other hand, for the object G, the success rate improved but not as much as the other two objects because the shape of the object G is not similar to any of objects used for training the CNN. However, as far as surrounding objects do not bury the target object, the robot can avoid picking tangled objects in most of the cases.
+
+To summarize, our CNN has a good generalization capability; the robot can complete the bin-picking task with a high success rate when the shape of the target object is similar to the ones used to train the CNN. While we just used five types of objects to train the CNN, the generalization capability of the CNN will increase if a wider variety of objects is used to train the CNN. If a dataset is prepared with enough variety of objects to train the CNN, then additional train to the CNN may not be necessary even if a new object is to be picked. Moreover, even if additional training is required to train the CNN, it can be quickly done because the physics simulator allows simulating randomly stacked piles of any new object quickly.
+
+TABLE II Results of Experiment 2: the Numerator Denotes the Number of Times When the Gripper Successfully Picked Up At Least One Object. the Number Between the Brackets Denotes the Number of Times When the Gripper Successfully Picked Up Only One Object. Denominator Denotes the Number of Times That the Experiment Was Conducted.
+
+ SECTION V.
+Discussion
+
+Let us consider make prediction whether or not the picked object is tangled with its surroundings without using the CNN. An intuitive approach is to check whether or not the target object is completely visible since a completely visible object can be picked without being tangled with its surroundings. This becomes possible by detecting the pose of the target object and its surroundings. On the other hand, Fig. 11 shows two cases where the target object is not completely visible. To predict whether the picked object is tangled or not in these cases, we have to calculate the overlapping area between the target object and its surroundings. Even if the overlapping area is small, there is no guarantee where the object is picked without tangled with its surroundings. On the other hand, even when the target object is overlapped with its surroundings, a learning based approach like CNN can make prediction based on the past experience.
+
+Fig. 9.
+
+Results of experiment 1: The values in the bottom right corner indicates the number of objects picked successfully after attempting the picking and the color means the execution segment.
+
+The combination of the graspability and the CNN can provide another insight. The conventional learning based approach [9]–​[14] predicts whether or not a robot successfully picks an object from the pile. However, the success rate of picking a simple shaped object by using a learning based approach is not significantly different from the success rate by using the conventional approach using the graspability. Hence, we believe that it is effective to use the CNN to compensate the disadvantages existing in the conventional graspability approach.
+ SECTION VI.
+Conclusion
+
+In this research, We proposed a method for picking an object from the pile without entangled with another object. As a result, we confirmed that our method can increase the success rate of picking up only one object. In future works, we will improve the success rate of picking up one and only one object by adding actions to the robot to solve cases where tangled objects exist after picking.
+
+Fig. 10.
+
+Results of experiment 2: Red denotes the pose with the highest graspability. Yellow segments denote the poses with the 2nd, 3rd, 4th and 5th highest graspability in order of the color brightness. The green dot denotes the best pose obtained by using our CNN. The number in the bottom right corner denote the number of objects picked.
+
+Fig. 11.
+
+Two cases where the target object is not completely visible.
+
+ACKNOWLEDGMENT
+
+This research was supported by NEDO (New Energy and Industrial Technology Development Organization). The authors would like to express their sincere gratitude for Ms.Xinyi Zhang who is a graduate student of Osaka University for her help in the experiment. All the authors equally contribute to this research
+

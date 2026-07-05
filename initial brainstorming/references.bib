@@ -66,3 +66,68 @@
   note         = {Integrated recognition + decluttering (rearrangement policy) + multi-modal grasping (Fin-ray/electromagnet/suction) on a UR5e with a wrist-mounted Orbbec Femto Bolt. Zhejiang University. VERIFY: arXiv ID / URL},
   file         = {papers/Towards Reliable Sequential Object Picking in Clutter.pdf}
 }
+
+
+% ---------------------------------------------------------------------------
+% §3.6  Entanglement / separating interlocking parts  (Pillar 2 hard boundary)
+%   Field is two groups: AIST/Osaka (Domae/Wan/Harada) + Fraunhofer IPA (Moosmann/Bormann).
+%   Sub-angles: pre-grasp DETECTION vs post-pick SEPARATION (solving). You detect+bound.
+% ---------------------------------------------------------------------------
+
+@inproceedings{matsumura2019learning,
+  title        = {Learning-Based Robotic Bin-Picking for Potentially Tangled Objects},
+  author       = {Matsumura, Ryuta and Domae, Yukiyasu and Wan, Weiwei and Harada, Kensuke},
+  booktitle    = {2019 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year         = {2019},
+  keywords     = {entanglement},
+  note         = {ANCHOR / first work to pick "one and only one" object from a tangled pile. Graspability index (Domae) generates grasp candidates; a CNN (sim-trained) predicts pre-grasp whether a pick will come up tangled. Robot Nextage. Sim LABELS tangles by "did neighbours move upward?" = co-motion (my live post-pick signal). Their own future work = the later separation papers. VERIFY: author order/pages/DOI (metadata from extracted .txt, not the PDF).},
+  file         = {papers/entanglement/Learning Based Robotic Bin-picking for Potentially Tangled Objects.txt}
+}
+
+@inproceedings{zhang2021topological,
+  title        = {A Topological Solution of Entanglement for Complex-Shaped Parts in Robotic Bin-Picking},
+  author       = {Zhang, Xinyi and Koyama, Keisuke and Domae, Yukiyasu and Wan, Weiwei and Harada, Kensuke},
+  booktitle    = {2021 IEEE 17th International Conference on Automation Science and Engineering (CASE)},
+  year         = {2021},
+  doi          = {10.1109/CASE49439.2021.9551426},
+  keywords     = {entanglement},
+  note         = {Analytic "entanglement map" from a single depth image -- NO training, NO object models -- selects non-tangle regions, then graspability for collision-free grasps. Beats the learned baseline [Matsumura 2019] on success rate. Closest to my cheap/training-free stance, but pre-grasp not post-pick.},
+  file         = {papers/entanglement/A Topological Solution of Entanglement for Complex-shaped Parts.pdf}
+}
+
+@article{moosmann2020increasing,
+  title        = {Increasing the Robustness of Random Bin Picking by Avoiding Grasps of Entangled Workpieces},
+  author       = {Moosmann, Marius and Spenrath, Felix and Kleeberger, Kilian and Khalid, Muhammad Usman and M{\"a}nnig, Manuel and Rosport, Johannes and Bormann, Richard},
+  journal      = {Procedia CIRP},
+  volume       = {93},
+  pages        = {1212--1217},
+  year         = {2020},
+  note         = {53rd CIRP Conference on Manufacturing Systems. Fraunhofer IPA. CNN on depth map + neighbourhood, trained on simulated data, predicts pre-grasp whether entanglement is present -> AVOID those grasps (detect-and-avoid). Open access (CC BY-NC-ND). VERIFY: DOI.},
+  keywords     = {entanglement},
+  file         = {papers/entanglement/Increasing the Robustness of Random Bin Picking by Avoiding Grasps of.pdf}
+}
+
+@article{moosmann2021separating,
+  title        = {Separating Entangled Workpieces in Random Bin Picking using Deep Reinforcement Learning},
+  author       = {Moosmann, Marius and Kulig, Marco and Spenrath, Felix and M{\"a}nnig, Manuel and Roggendorf, Simon and Petrovic, Oliver and Bormann, Richard and Huber, Marco F.},
+  journal      = {Procedia CIRP},
+  volume       = {104},
+  pages        = {881--886},
+  year         = {2021},
+  note         = {54th CIRP Conference on Manufacturing Systems. Fraunhofer IPA. DRL learns separation motions to disentangle (vs supervised, cuts labelling effort). SOLVING side -- shows disentanglement needs learning/hardware. VERIFY: DOI.},
+  keywords     = {entanglement},
+  file         = {papers/entanglement/Separating Entangled Workpieces in Random Bin Picking using Deep Reinforcement Learning.pdf}
+}
+
+@misc{zhang2023dexterous,
+  title        = {Learning to Dexterously Pick or Separate Tangled-Prone Objects for Industrial Bin Picking},
+  author       = {Zhang, Xinyi and Domae, Yukiyasu and Wan, Weiwei and Harada, Kensuke},
+  year         = {2023},
+  eprint       = {2302.08152},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.RO},
+  howpublished = {arXiv preprint arXiv:2302.08152; project page https://xinyiz0931.github.io/tangle},
+  keywords     = {entanglement},
+  note         = {PickNet/PullNet: self-supervised in a physics sim, either picks isolated objects or SEPARATES tangles (drop-into-buffer + pull), ~90%. SOLVING side -- learned policies + extra bin + pulling actions = the "heavy machinery" I contrast against.},
+  file         = {papers/entanglement/Learning to Dexterously Pick or Separate Tangled-Prone Objects.pdf}
+}
