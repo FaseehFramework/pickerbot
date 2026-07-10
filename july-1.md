@@ -29,10 +29,9 @@ They line up neatly along the spectrum of failure handling. **prevent → detect
 
 Failure handling spans **prevent** (feasibility aware, Ko) → **detect** (during/after execution, Zhu) → **recover** (re-plan or re-skill, Ahmad). Two things stand out. First, the field is trending **closed-loop, multimodal, and heavyweight**, VLMs, behaviour trees, diffusion models. Second, the one constant that matters to me is Zhu's result: **fusing vision with gripper feedback is the effective pattern** for catching pick failures.
 
-<!-- 🖼️ ADD (create img/july1/): a diagram of MY verification loop —
-     "pick attempt → re-scan ROI → {object gone = SUCCESS · object still there = FAILED GRASP · neighbours moved together = TANGLE} → skip + log  OR  (stretch) disturbance nudge → retry".
-     This is the core visual of the entry. Suggested filename img/july1/verify_loop.png and caption below. -->
-<!-- *My verification loop: a single post-pick re-scan decides success, failed grasp, or tangle — then either logs-and-skips or (stretch goal) nudges and retries. No VLM, no behaviour tree — just "look again."* -->
+![Flow of my verification loop: a pick attempt, then a vision rescan of the ROI, branching into three outcomes — SUCCESS (object gone), FAILED GRASP (object still present or displaced), and TANGLE (neighbours moved together) — each routed to skip-and-log, with a stretch-goal disturbance nudge to retry.](img/july1/Robotic_Verification_Loop_Process.png)
+
+*My verification loop: a single post pick rescan decides success, failed grasp, or tangle then either logs-and-skips or nudges and retries.
 
 ## What this means for my project (Pillar 2)
 
@@ -43,9 +42,9 @@ This cluster sets the ceiling I'm deliberately staying under, and it validates m
 - **Recovery is a stretch, and stays small.** The field re-plans or generates new skills (Ahmad); mine is a single open-loop disturbance nudge + retry, only for *lightly* tangled parts. Ahmad and Ko define the expensive end I'm not reaching for.
 - **Feasibility, done cheaply.** Ko checks reachability and placement at detection time; my approach check with skip-if-blocked is the poor-man's version. Don't attempt a pick I can't clear.
 
-<!-- 📷 ADD (img/july1/): a real before/after pair from MY bench — the same ROI photographed before a pick (module present) and after (module gone = verified success; or still there = detected failure).
-     Cheap to capture, and it shows the actual mechanism working on my own parts. Suggested filename img/july1/rescan_beforeafter.png and caption below. -->
-<!-- *My verification in practice: the same region before and after a pick. Object gone = success; still present = a failure I can catch and act on — the whole check is just comparing these two frames.* -->
+![Three-panel schematic of the verification check: Before Pick (module present); After Verified Success (module absent, green tick); After — Detected Failure (module still present, red cross).](img/july1/Pick_Verification_Visualization.png)
+
+*The check, illustrated: compare the region before the pick (module present) with after module gone ⇒ verified success; module still there ⇒ detected failure.
 
 So Pillar 2's verification claim is, once again, narrow and honest: **a cheap, training-free re-scan that confirms a clean single-object pick, flags failures and tangles, and fuses with a companion proprioceptive signal enough to make pile-clearing robust, without a heavyweight recovery engine.**
 
