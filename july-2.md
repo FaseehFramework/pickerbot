@@ -19,7 +19,7 @@ The parts are also **near-identical in height**, which is the subtle bit: intrin
 
 > **Primary RQ.** On a physical industrial manipulator clearing an unstructured pile of small, near-identical microelectronic modules, does a cheap, depth-only **topmost-first** pick sequence — supported by a lightweight vision re-scan that **detects and skips** inseparable (tangled) picks — reduce gripper–neighbour collisions and improve clean-pick yield relative to an **unordered, open-loop baseline**, by a statistically significant margin?
 
-**What "better" means (defined up front, per Dr. Sameer).** Not "smarter" and not "optimal." Specifically: **fewer approach collisions** and **higher clean-pick yield**, at **negligible added compute and sensing** — the whole ordering policy is a single `sort()` on the depth map, no training and no extra models. Every metric is tied to the *arm's* behaviour, not to vision quality in isolation, so the claim stays **robotics**, not computer vision.
+**What "better" means** Not "smarter" and not "optimal." Specifically: **fewer approach collisions** and **higher clean-pick yield**, at **negligible added compute and sensing** the whole ordering policy is a single `sort()` on the depth map, no training and no extra models. Every metric is tied to the *arm's* behaviour, not to vision quality in isolation, so the claim stays **robotics**, not computer vision.
 
 ### Sub-questions (each maps to a pillar and a measurable outcome)
 
@@ -32,9 +32,6 @@ The parts are also **near-identical in height**, which is the subtle bit: intrin
 
 - **In:** 4-DoF picking `(x, y, z, yaw)` of opaque modules in a pile; a fixed overhead depth camera; topmost-first ordering; vision verification that **detects and skips** tangles.
 - **Out (declared, not hidden):** mechanically **separating** strongly tangled parts (an open, hardware/learning-heavy problem — Part 2); full 6-DoF pose of arbitrarily tilted parts; specular/transparent depth recovery; and the gripper mechanism with its proprioceptive force signal, which is **Aman's companion thesis** — I own the vision side and the interface between us.
-
-<!-- 🖼️ ADD (img/july2/): a one-page "system at a glance" diagram — the depth pipeline as the base layer, the two pillars on top (Pillar 1: topmost-first sequencing · Pillar 2: vision verification + skip), the stretch nudge dotted-in, and arrows to the robotics-first metrics (collisions, clean-pick yield, verification accuracy). Suggested filename img/july2/system_at_a_glance.png and caption below. -->
-<!-- *Picker-Bot at a glance: a depth pipeline feeds two pillars — cheap topmost-first ordering and a lightweight verify-and-skip loop — with every arrow ending at a metric tied to the arm's behaviour.* -->
 
 ## The title
 
