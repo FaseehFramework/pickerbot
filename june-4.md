@@ -1,27 +1,27 @@
 ---
 layout: default
-title: "30/06/2026 : Subject Area Review — Pt.2: Entanglement"
+title: "June 29 - June 30 : Subject Area Review — Pt.2: Entanglement"
 parent: June 2026
 nav_order: 4
 ---
 
-# 30/06/2026 — Subject Area Review, Part 2: Entanglement
+# Part 2: Entanglement
 
-*[Part 1]({% link june-3.md %}) was about pick order. This part is about the thing that makes my object set genuinely unusual and the hard boundary of my whole project. When you tip a bucket of pin-headed modules onto a table, they don't just stack. They **hook into each other's GPIO pins** and lock together.*
+*[Part 1]({% link june-3.md %}) was about pick order. This part is about the thing that makes my object set genuinely unusual and the hard boundary of my whole project. When you tip a bucket of pin-headed modules onto a table, they don't just stack. They **hook into each other's GPIO pins**.*
 
 ## Why this cluster matters to me
 
-My scene has a difficulty ladder: free singles, stacked/overlapping parts, and the nasty end **tangled** clusters that are mechanically interlocked. Topmost-first (Part 1) peels off the first two rungs. This cluster is about the last one.
+My scene has a difficulty ladder: free singles, stacked/overlapping parts, and the **tangled** clusters that are interlocked. Topmost-first (Part 1) peels off the first two rungs. This cluster is about the last one.
 
 ![The difficulty ladder: free singles → stacked/overlapping → lightly tangled → strongly tangled, shown on my own modules with a vision status for each.](img/june3/flatplane.png)
 
-*My scene as a difficulty ladder. Ordering handles the left; this entry is about the right — where the pins interlock.*
+*My scene as a difficulty ladder. Ordering handles the left; this entry is about the right where the pins interlock.*
 
-One thing hit me immediately while reading: **the entanglement literature studies complex-shaped industrial workpieces** — hooks, C-clips, U-bolts, springs parts whose geometry naturally hooks together. **Nobody has studied the entanglement of small hobby PCBs through their header pins.** That's a gap I can own simply by characterising it.
+One thing hit me immediately while reading: **the entanglement literature studies complex-shaped industrial workpieces** like hooks, C-clips, U-bolts, springs parts whose geometry naturally hooks together. **Nobody has studied the entanglement of small hobby PCBs through their header pins.** That's a gap I can own simply by characterising it.
 
 ![A pile of my own microelectronic modules — an ESP32 with long header pins draped across an Arduino UNO, an ultrasonic sensor wedged alongside — showing how protruding headers overhang and hook neighbouring boards.](img/june4/sample.jpg)
 
-*My own modules, tipped into a pile: the ESP32's long header pins drape straight across the Arduino UNO, with an ultrasonic sensor wedged alongside. It's exactly this protruding-header geometry that hooks parts together — the same interlocking failure the literature studies on complex metal workpieces, but on hobby PCBs nobody has characterised.*
+*My own modules, tipped into a pile: the ESP32's long header pins drape straight across the Arduino UNO, with an ultrasonic sensor wedged alongside. It's exactly this protruding-header geometry that hooks parts together, the same interlocking failure the literature studies on complex metal workpieces, but on hobby PCBs nobody has characterised.*
 
 ## What the five papers do
 
@@ -42,9 +42,9 @@ I read these asking one question: *how do they handle interlocking parts, and wh
 
 Two honest takeaways. First, **entanglement is a real, distinct, hard failure mode**. Matsumura literally call theirs "the first trial on picking from a tangled pile," and every paper here needs serious machinery (physics simulators, CNNs, deep RL, or bespoke topology) just to *detect* it. Second, **actually separating tangles is the expensive, open end of the field** ,it takes learned manipulation and simulation infrastructure I don't have.
 
-![Three-column taxonomy of entanglement strategies: Detect & Avoid (CNN / topology map), Detect & Separate (RL pull / buffer-bin drop), and mine — Detect & Bound (cheap post-hoc re-scan + skip).](img/june4/taxonomy.png)
+![Three-column taxonomy of entanglement strategies: Detect & Avoid (CNN / topology map), Detect & Separate (RL pull / buffer-bin drop), and my Detect & Bound (cheap post-hoc re-scan + skip).](img/june4/taxonomy.png)
 
-*Where I sit relative to the field: the literature either predicts-and-avoids tangles (Family 1) or learns to separate them (Family 2). I do neither expensively — I detect the tangle after the attempt with a cheap re-scan, and bound the failure by skipping.*
+*Where I sit relative to the field: the literature either predicts-and-avoids tangles (Family 1) or learns to separate them (Family 2). I do neither expensively , I detect the tangle after the attempt with a re-scan, and bound the failure by skipping.*
 
 ## What this means for my project (Pillar 2)
 

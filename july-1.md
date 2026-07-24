@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "01/07/2026 : Subject Area Review — Pt.3: Verification & Recovery"
+title: "July 01 - July 03 : Pt.3: Verification & Recovery"
 parent: July 2026
 nav_order: 1
 ---
 
-# 01/07/2026 — Subject Area Review, Part 3: Verification & Recovery
+# Subject Area Review, Part 3: Verification & Recovery
 
 *[Part 2]({% link june-4.md %}) ended on a promise, my system **detects** a tangle rather than solving it. But detecting is only half of it ,the system has to *do* something when a pick goes wrong. This last part of the review is about that machinery: **grasp verification and failure recovery** How a robot knows a pick failed, and what it does next.*
 
@@ -29,7 +29,7 @@ They line up neatly along the spectrum of failure handling. **prevent → detect
 
 Failure handling spans **prevent** (feasibility aware, Ko) → **detect** (during/after execution, Zhu) → **recover** (re-plan or re-skill, Ahmad). Two things stand out. First, the field is trending **closed-loop, multimodal, and heavyweight**, VLMs, behaviour trees, diffusion models. Second, the one constant that matters to me is Zhu's result: **fusing vision with gripper feedback is the effective pattern** for catching pick failures.
 
-![Flow of my verification loop: a pick attempt, then a vision rescan of the ROI, branching into three outcomes — SUCCESS (object gone), FAILED GRASP (object still present or displaced), and TANGLE (neighbours moved together) — each routed to skip-and-log, with a stretch-goal disturbance nudge to retry.](img/july1/Robotic_Verification_Loop_Process.png)
+![Flow of my verification loop: a pick attempt, then a vision rescan of the ROI, branching into three outcomes — SUCCESS (object gone), FAILED GRASP (object still present or displaced), and TANGLE (neighbours moved together) each routed to skip-and-log, with a stretch-goal disturbance nudge to retry.](img/july1/Robotic_Verification_Loop_Process.png)
 
 *My verification loop: a single post pick rescan decides success, failed grasp, or tangle then either logs-and-skips or nudges and retries.
 

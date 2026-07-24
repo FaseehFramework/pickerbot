@@ -1,17 +1,17 @@
 ---
 layout: default
-title: "28/06/2026 : Subject Area Review — Pt.1: Pick Sequencing"
+title: "June 25 - June 27 : Subject Area Review — Pt.1: Pick Sequencing"
 parent: June 2026
 nav_order: 3
 ---
 
-# 28/06/2026 — Subject Area Review, Part 1: Pick Sequencing & Clutter Removal
+# Part 1: Pick Sequencing & Clutter Removal
 
 *Straight out of the [meeting with Dr. Sameer]({% link june-2.md %}) and into the literature. His challenge was blunt: "where does tallest-first come from — and does it feel right?" So I started with the cluster closest to my central claim: when a robot faces a pile, **which object should it pick first?***
 
 ## Why I started here
 
-My whole project leans on **pick ordering**. Before I'm allowed to defend "pick the tallest/topmost first," I need to know how the field actually decides pick order — and, honestly, whether anyone just picks the tallest. I pulled four papers that between them span the range from classical planning to the very latest learned methods.
+My whole project leans on **pick ordering**. Before I'm allowed to defend "pick the tallest/topmost first," I need to know how the field actually decides pick order and, honestly, whether anyone just picks the tallest. I pulled four papers that between them span the range from classical planning to the very latest learned methods.
 
 ## What the four papers actually do
 
@@ -43,9 +43,9 @@ Of the four, **Nam et al.** is the one I keep coming back to. They model clutter
 
 *My adaptation of the traversability-graph idea to my three modules. Powerful — but building it means reasoning over pairwise object dependencies and needing geometric models of the scene, so planning cost climbs steeply with object count (the polynomial-time complexity flagged top-right).*
 
-But I don't need to *build* that graph. In a dumped pile, an object is traversable when nothing sits on top of it — and **the object with the highest top-surface Z is, by definition, the least occluded and most traversable.** So a single `sort()` on depth-derived heights recovers the same "what next?" logic the T-Graph computes combinatorially with zero prior modelling and negligible compute.
+But I don't need to *build* that graph. In a dumped pile, an object is traversable when nothing sits on top of it and **the object with the highest top-surface Z is, by definition, the least occluded and most traversable.** So a single `sort()` on depth-derived heights recovers the same "what next?" logic the T-Graph computes combinatorially with zero prior modelling and negligible compute.
 
-![A depth heightmap of a pile of my modules, with pick order 1–4 assigned by sorting top-surface height in descending order.](img/june3/topmostfirst.png)
+![A rendered depth heightmap of a pile of my modules, with pick order 1–4 assigned by sorting top-surface height in descending order.](img/june3/topmostfirst.png)
 
 *My cheap proxy: pick order taken straight from `sort(Z-heights, descending)` on the depth map. Highest = most on-top = picked first.*
 
@@ -54,7 +54,7 @@ But I don't need to *build* that graph. In a dumped pile, an object is traversab
 
 The literature did exactly what Dr. Sameer asked: it moved "tallest-first" from an assertion to a **positioned, defensible claim** ,a cheap proxy for a signal the whole field agrees on, to be proven against a baseline.
 
-**Next (Part 2):** the cluster that makes my object set unusual — **entanglement** (a pile of pin-headed modules interlocks in a way a bin of boxes never does), and then **grasp verification / failure detection**.
+**Next (Part 2):** the cluster that makes my object set unusual,**entanglement** (a pile of pin-headed modules interlocks in a way a bin of boxes never does), and then **grasp verification / failure detection**.
 
 ### References
 - Nam, Lee, Cheong, Cho & Kim (2020). *Fast and resilient manipulation planning for target retrieval in clutter.* ICRA. [arXiv:2003.11420](https://arxiv.org/abs/2003.11420)

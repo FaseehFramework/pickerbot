@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "19/07/2026 : D435i arrived"
+title: "July 17 - July 19 : D435i arrived"
 parent: July 2026
 nav_order: 3
 ---
 
-# 19/07/2026 — The D435i arrives: first frames, and a tilt that taught me something
+# The D435i arrives: first frames, and a tilt that taught me something
 
 *[Finalising the project]({% link july-2.md %}): out of the library and onto the bench. This week the hardware showed up, so this entry is sensor bring-up, my first recording, and one honest surprise in the depth image that turned out to be the whole reason the pipeline is built the way it is.*
 
@@ -13,11 +13,11 @@ nav_order: 3
 
 The RealSense **D435i** arrived and I headed straight to the lab. I've never used a depth camera personally before, so before writing anything serious I wanted to tinker with it and build some intuition for what it actually gives me.
 
-![the D435i, fresh out of the box.](img/july3/unboxing.png)
+![the D435i next to the vt6.](img/july3/realsense.jpg)
 
 I installed the SDK and spent a while just messing around with the live viewer pointing it at things, watching the depth stream update in real time. Seeing myself rendered in depth for the first time is genuinely one of those small "oh, *cool*" moments that makes the abstract feel real.
 
-![my first selfie in depth. Nearer is warmer, farther is cooler.](img/july3/depth-selfie.png)
+![my first selfie in depth. Nearer is warmer, farther is cooler.](img/realsense/selfie.png)
 
 ## D405 vs D435i 
 
@@ -27,13 +27,14 @@ I'd originally specced the **D405** for its short-range accuracy, but MDX procur
 
 I recorded a short `.bag` of the workspace to see what information I'd actually get back, then wrote a small script (`read_frame.py`) to pull a single frame out of it and save both the **colour** and the **depth** view.
 
-![Colour and depth output from the first workspace recording, produced by read_frame.py.](img/july3/first-frame.png)
+![Colour and depth output from the first workspace recording, produced by read_frame.py.](img/realsense/read_first_frame.png)
 
-*Placeholder — the workbench in colour (left) and depth (right), straight out of `read_frame.py`.*
 
 ## The rainbow that shouldn't be there
 
 Here's where it got interesting. Even though I'd aimed the camera **parallel to the workspace** by hand, so not remotely precise, but I tried ,the depth image still showed a clear colour gradient sliding across a surface I *know* is flat: red (near) → yellow → green → blue (far).
+
+![Depth of the workspace](img/realsense/height-before.png)
 
 That gradient is the **tilt**. A depth camera measures distance along its own line of sight, so if it's even slightly off-square to the table which it will be, held by hand, a flat table becomes a **ramp of distances**: one edge is genuinely closer to the lens than the other. Hence the rainbow across something I know is flat. The parts, meanwhile, show up as slightly darker blue because they stand up a little, so locally they're a touch nearer than the table right around them.
 
@@ -53,7 +54,7 @@ So the natural next step is to fit the table plane, subtract it, and re-colour b
 
 I implemented that, and the difference is far easier to read and understand.
 
-![Before and after subtracting the fitted table plane: raw depth with its tilt gradient (left) versus true height above the table (right).](img/july3/before-after-plane.png)
+![Before and after subtracting the fitted table plane.](img/realsense/bfr_aftr.png)
 
 Two things in the "after" image are **normal, not errors**: a bit of speckle at object edges (depth is always noisy at boundaries), and the table not being perfectly uniform.
 
