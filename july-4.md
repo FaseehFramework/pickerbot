@@ -34,5 +34,3 @@ Height is the **ordering** signal; YOLO is the **separation**. Neither alone is 
 ## Where this leaves me
 
 I now have direct, visual proof of exactly where depth-only segmentation breaks and a clear reason for the fusion design rather than a hunch. The pile that collapsed into one box is the whole argument for a detector.
-
-**Next:** bring YOLO into the picture get the OBB detector separating the parts so the height map can rank them.
