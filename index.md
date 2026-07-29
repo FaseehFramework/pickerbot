@@ -10,7 +10,8 @@ nav_order: 0
 
 **Faseeh Mohammed** (M01088120) · MSc Robotics, Middlesex University Dubai · Module **PDE4445**
 Supervisor: **Dr. Sameer** · Companion thesis (end-effector & proprioceptive): **Aman Mishra**
-Platform: **EPSON VT6-A901S** 6-axis arm · **Intel RealSense D405** (+ D435 / OAK-D Pro) · **YOLOv8-OBB**
+Platform: **EPSON VT6-A901S** 6-axis arm · **Intel RealSense D435** · **YOLOv8-OBB**
+Code & work: **[GitHub repository](https://github.com/MrRox1337/picker-bot/tree/pde4445-pickerbot-faseeh/pde4445-dev)**
 
 ---
 
