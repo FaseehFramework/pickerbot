@@ -31,6 +31,8 @@ This is the heart of my two-part design:
 
 Height is the **ordering** signal; YOLO is the **separation**. Neither alone is enough.
 
+*Update: I planned this around YOLO-OBB (oriented boxes), but later [pivoted to instance segmentation]({% link august-2.md %}). The logic here is unchanged.*
+
 ## Where this leaves me
 
 I now have direct, visual proof of exactly where depth-only segmentation breaks and a clear reason for the fusion design rather than a hunch. The pile that collapsed into one box is the whole argument for a detector.

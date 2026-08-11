@@ -10,7 +10,7 @@ nav_order: 0
 
 **Faseeh Mohammed** (M01088120) · MSc Robotics, Middlesex University Dubai · Module **PDE4445**
 Supervisor: **Dr. Sameer** · Companion thesis (end-effector & proprioceptive): **Aman Mishra**
-Platform: **EPSON VT6-A901S** 6-axis arm · **Intel RealSense D435** · **YOLOv8-OBB**
+Platform: **EPSON VT6-A901S** 6-axis arm · **Intel RealSense D435** · **YOLOv8 instance segmentation**
 Code & work: **[GitHub repository](https://github.com/MrRox1337/picker-bot/tree/pde4445-pickerbot-faseeh/pde4445-dev)**
 
 ---
@@ -111,7 +111,7 @@ Tip a bucket of small hobby modules (Arduino, ESP32, LCD) onto a table and you d
     <div class="g-cells"><div class="tbar" style="grid-column:3/4; background:#7fd3b6;"></div></div></div>
   <div class="g-row"><div class="g-label"><div class="g-task">Parallax / top-surface-centroid pose pipeline</div></div>
     <div class="g-cells"><div class="tbar" style="grid-column:4/5; background:#7fd3b6;"></div></div></div>
-  <div class="g-row"><div class="g-label"><div class="g-task">Fuse depth with YOLOv8-OBB · <b>▲ Blog due 26 Jul</b></div></div>
+  <div class="g-row"><div class="g-label"><div class="g-task">Fuse depth with YOLOv8-seg · <b>▲ Blog due 26 Jul</b></div></div>
     <div class="g-cells"><div class="tbar" style="grid-column:4/5; background:#7fd3b6;"></div></div></div>
 
   <div class="g-div"></div>
