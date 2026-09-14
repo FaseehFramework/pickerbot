@@ -7,7 +7,8 @@
       "Bash(command -v pdftotext)",
       "Bash(python -c \"import pypdf; print\\('pypdf ok'\\)\")",
       "Bash(python -c \"import PyPDF2; print\\('PyPDF2 ok'\\)\")",
-      "WebFetch(domain:www.githubstatus.com)"
+      "WebFetch(domain:www.githubstatus.com)",
+      "Bash(cd \"C:/Users/10463/MB_faseeh/REPO/PDE4445\" && echo \"=== pnp dir contents with dates ===\" && ls -la img/yolo/pnp/ && echo \"=== post_yolo dir ===\" && ls -la img/yolo/post_yolo/ && echo \"=== search whole machine for pde4445-dev-like files \\(pick_list, handeye, calib_pairs\\) ===\" && find \"C:/Users/10463\" -maxdepth 6 \\\\\\( -iname \"pick_list.json\" -o -iname \"handeye.json\" -o -iname \"calib_pairs.csv\" -o -iname \"orchestrate_pick.py\" -o -iname \"gripper_api.py\" \\\\\\) 2>/dev/null)"
     ]
   }
 }

@@ -131,3 +131,48 @@
   note         = {PickNet/PullNet: self-supervised in a physics sim, either picks isolated objects or SEPARATES tangles (drop-into-buffer + pull), ~90%. SOLVING side -- learned policies + extra bin + pulling actions = the "heavy machinery" I contrast against.},
   file         = {papers/entanglement/Learning to Dexterously Pick or Separate Tangled-Prone Objects.pdf}
 }
+
+% ---------------------------------------------------------------------------
+% §3.3  Closed-loop verification & failure recovery  (Pillar 2 machinery)
+%   Spectrum: prevent (Ko) -> detect (Zhu, the anchor) -> recover (Ahmad).
+%   Metadata from the july-1.md reference list. VERIFY volumes/pages in Zotero.
+% ---------------------------------------------------------------------------
+
+@article{zhu2021failure,
+  title        = {Failure Handling of Robotic Pick and Place Tasks With Multimodal Cues Under Partial Object Occlusion},
+  author       = {Zhu, Zhu and Wang, Wen and Wen, Yang and Yang, Pan and Pan, Wang and Wang and Wang},
+  journal      = {Frontiers in Neurorobotics},
+  volume       = {15},
+  pages        = {570507},
+  year         = {2021},
+  doi          = {10.3389/fnbot.2021.570507},
+  keywords     = {verification},
+  note         = {ANCHOR. Treats pick-and-place as a chain (grasp planning -> establishment -> lifting -> placing) and catches failures across it by FUSING vision (pose estimation + tracking under partial occlusion) with gripper/contact feedback. This is exactly the two-thesis split: I own the exteroceptive modality, Aman owns the proprioceptive one. VERIFY: full author list -- the blog reference list is garbled, re-read the PDF title page before citing.},
+  file         = {papers/recovery/Failure Handling of Robotic Pick and Place Tasks With Multimodal Cues Under Partial Object Occlusion.pdf}
+}
+
+@misc{ahmad2025unified,
+  title        = {A Unified Framework for Real-Time Failure Handling in Robotics Using Vision-Language Models, Reactive Planner and Behavior Trees},
+  author       = {Ahmad, Faseeh and Ismail, Malik and Styrud, Jonathan and Stenmark, Maj and Krueger, Volker},
+  year         = {2025},
+  eprint       = {2503.15202},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.RO},
+  howpublished = {arXiv preprint arXiv:2503.15202},
+  keywords     = {verification},
+  note         = {RECOVER end of the spectrum. VLM + reactive planner + behaviour trees over a scene graph and execution history; does pre-execution verification AND reactive handling, including generating new skills. The heavyweight ceiling I deliberately stay under. VERIFY: author first names.},
+  file         = {papers/recovery/A Unified Framework for Real-Time Failure Handling in Robotics.pdf}
+}
+
+@misc{ko2025simultaneous,
+  title        = {Simultaneous Pick and Place Detection by Combining SE(3) Diffusion Models with Differential Kinematics},
+  author       = {Ko, Tianyi and Ikeda, Takuya and Opra, Thomas and Nishiwaki, Koichi},
+  year         = {2025},
+  eprint       = {2504.19502},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.RO},
+  howpublished = {arXiv preprint arXiv:2504.19502},
+  keywords     = {verification, pose-grasp},
+  note         = {PREVENT end of the spectrum. SE(3) grasp diffusion model constrained by differential IK so every candidate grasp is reachable AND placeable for both pick and place -- feasibility-aware grasping. My cheap analogue is approach-check + skip-if-blocked. VERIFY: author first names.},
+  file         = {papers/recovery/Simultaneous Pick and Place Detection by Combining.pdf}
+}
