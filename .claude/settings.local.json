@@ -8,7 +8,8 @@
       "Bash(python -c \"import pypdf; print\\('pypdf ok'\\)\")",
       "Bash(python -c \"import PyPDF2; print\\('PyPDF2 ok'\\)\")",
       "WebFetch(domain:www.githubstatus.com)",
-      "Bash(cd \"C:/Users/10463/MB_faseeh/REPO/PDE4445\" && echo \"=== pnp dir contents with dates ===\" && ls -la img/yolo/pnp/ && echo \"=== post_yolo dir ===\" && ls -la img/yolo/post_yolo/ && echo \"=== search whole machine for pde4445-dev-like files \\(pick_list, handeye, calib_pairs\\) ===\" && find \"C:/Users/10463\" -maxdepth 6 \\\\\\( -iname \"pick_list.json\" -o -iname \"handeye.json\" -o -iname \"calib_pairs.csv\" -o -iname \"orchestrate_pick.py\" -o -iname \"gripper_api.py\" \\\\\\) 2>/dev/null)"
+      "Bash(cd \"C:/Users/10463/MB_faseeh/REPO/PDE4445\" && echo \"=== pnp dir contents with dates ===\" && ls -la img/yolo/pnp/ && echo \"=== post_yolo dir ===\" && ls -la img/yolo/post_yolo/ && echo \"=== search whole machine for pde4445-dev-like files \\(pick_list, handeye, calib_pairs\\) ===\" && find \"C:/Users/10463\" -maxdepth 6 \\\\\\( -iname \"pick_list.json\" -o -iname \"handeye.json\" -o -iname \"calib_pairs.csv\" -o -iname \"orchestrate_pick.py\" -o -iname \"gripper_api.py\" \\\\\\) 2>/dev/null)",
+      "Bash(pdftotext -layout \"C:/Users/10463/Downloads/M01088120_PDE4445_Thesis.pdf\" \"C:/Users/10463/AppData/Local/Temp/claude/C--Users-10463-MB-faseeh-REPO-PDE4445/ec4a23ab-a5ef-4659-9523-d3853b8a1c55/scratchpad/thesis.txt\")"
     ]
   }
 }

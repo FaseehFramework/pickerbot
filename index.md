@@ -53,7 +53,7 @@ The operating envelope is declared: every part must be separable by a vertical l
 
 ---
 
-## Timeline — 12 weeks, as they actually went
+## Timeline
 
 <div class="pb-gantt-scroll" markdown="0">
 <style>
@@ -77,9 +77,6 @@ The operating envelope is declared: every part must be separable by a vertical l
 </style>
 
 <div class="pb-gantt">
-  <div class="g-title">Dissertation timeline — 12 build weeks (30 Jun → 21 Sep 2026), reconstructed from the log</div>
-  <div class="g-sub">✓ complete — every phase, reconstructed after the fact from the blog and the run logs, not the original plan</div>
-
   <div class="g-header">
     <div class="g-week">W1</div><div class="g-week">W2</div><div class="g-week">W3</div><div class="g-week">W4</div>
     <div class="g-week">W5</div><div class="g-week">W6</div><div class="g-week">W7</div><div class="g-week">W8</div>
@@ -166,12 +163,6 @@ The operating envelope is declared: every part must be separable by a vertical l
   <div class="g-row"><div class="g-label"><div class="g-task done">Report submitted (25 Sep)</div></div>
     <div class="g-cells"><div class="tbar" style="grid-column:12/13; background:#e0a3b8;"></div></div></div>
 
-  <div class="g-legend">
-    <span><b>Milestones:</b></span>
-    <span>✓ Blog (40%) — 26 Jul</span>
-    <span>✓ Report (40%) — 25 Sep</span>
-    <span>▲ Presentation (20%) — 26 Oct</span>
-  </div>
 </div>
 </div>
 
@@ -181,6 +172,6 @@ The operating envelope is declared: every part must be separable by a vertical l
 
 | Deliverable | Weight | Due | Status |
 |---|---|---|---|
-| Project blog (this site) — weekly updates + final video | **40%** | 26 Jul 2026 | ✓ Done |
+| Project blog (this site) | **40%** | 26 Jul 2026 | ✓ Done |
 | Project report — ~8-page research article | **40%** | 25 Sep 2026 | ✓ Done |
 | Final presentation — supervisor + second marker | **20%** | 30 Sep 2026 | Upcoming |
