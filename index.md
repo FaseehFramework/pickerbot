@@ -17,6 +17,14 @@ Code & work: **[GitHub repository](https://github.com/MrRox1337/picker-bot/tree/
 
 ---
 
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:1rem 0;">
+  <iframe src="https://www.youtube.com/embed/RvMV7aG49nk" title="Picker-Bot — Full Demo" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+*[Watch on YouTube ↗](https://youtu.be/RvMV7aG49nk) — the full Picker-Bot demo: BOQ in, fulfilment report out.*
+
+---
+
 ## The project in one glance
 
 An electronics bench doesn't hold one part at a time it holds many kinds together: Arduinos, ESP32s, LCD panels, ultrasonic rangefinders, left resting on and against each other after use. Clearing the bench isn't actually the job; **retrieving the specific parts a schematic calls for** is. The project ended up reframed around that: a **bill of quantities (BOQ)** in, a **fulfilment report** out .
@@ -174,4 +182,4 @@ The operating envelope is declared: every part must be separable by a vertical l
 |---|---|---|---|
 | Project blog (this site) | **40%** | 26 Jul 2026 | ✓ Done |
 | Project report — ~8-page research article | **40%** | 25 Sep 2026 | ✓ Done |
-| Final presentation — supervisor + second marker | **20%** | 30 Sep 2026 | Upcoming |
+| Final presentation — supervisor + second marker | **20%** | 30 Sep 2026 | ✓ Done |
