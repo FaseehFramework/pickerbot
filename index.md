@@ -18,10 +18,10 @@ Code & work: **[GitHub repository](https://github.com/MrRox1337/picker-bot/tree/
 ---
 
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:1rem 0;">
-  <iframe src="https://www.youtube.com/embed/RvMV7aG49nk" title="Picker-Bot — Full Demo" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/x__ZqRKfEAw" title="Picker-Bot — Full Demo" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-*[Watch on YouTube ↗](https://youtu.be/RvMV7aG49nk) — the full Picker-Bot demo: BOQ in, fulfilment report out.*
+*[Watch on YouTube ↗](https://youtu.be/x__ZqRKfEAw?si=ciyFdNWVXuj309KY) — the full Picker-Bot demo: BOQ in, fulfilment report out.*
 
 ---
 
